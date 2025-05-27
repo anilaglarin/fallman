@@ -33,11 +33,13 @@ public class obstacle {
         g.drawImage(obstacleImage, x, y, width, height, null);
     }
 
+    // Hitbox'ı biraz küçülttük
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(x + 5, y + 5, width - 10, height - 10);
     }
 
     public int getY() {
         return y;
-    }
+       
+      }
 }

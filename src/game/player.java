@@ -13,6 +13,8 @@ public class player {
     private final int height = 40;
     private Image playerImage;
 
+    private int lives = 1;  // başlangıç can sayısı 1
+
     public player(int x, int y) {
         this.x = x;
         this.y = y;
@@ -34,8 +36,9 @@ public class player {
         g.drawImage(playerImage, x, y, width, height, null);
     }
 
+    // Hitbox'ı biraz küçülttük
     public Rectangle getBounds() {
-        return new Rectangle(x, y, width, height);
+        return new Rectangle(x + 5, y + 5, width - 10, height - 10);
     }
 
     public void setDx(int dx) {
@@ -45,4 +48,24 @@ public class player {
     public void setX(int x) {
         this.x = x;
     }
+
+    // CAN ile ilgili getter ve setterlar
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public void loseLife() {
+        if (lives > 0) {
+            lives--;
+        }
+    }
+
+    void takeExtraLife() {
+        throw new UnsupportedOperationException("Not supported yet.");
+}
 }
