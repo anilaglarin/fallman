@@ -29,7 +29,7 @@ public class player {
     public void update() {
         x += dx;
         if (x < 0) x = 0;
-        if (x > 260) x = 260; // panel genişliği 300, player genişliği 40
+        if (x > 260) x = 260; // panel genişliği 
     }
 
     public void draw(Graphics g) {

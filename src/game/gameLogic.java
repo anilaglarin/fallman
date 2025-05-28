@@ -18,9 +18,9 @@ public class gameLogic extends KeyAdapter {
     private boolean gameStarted = false;
     private boolean paused = false;
 
-    private int score = 0;
+    private int score = 0;    // başlangıç ayarları
     private int level = 1;
-    private int speed = 2;
+    private int speed = 3;     
 
     private int maxScore = 0;
     private final String SCORE_FILE = "max_score.txt";
@@ -67,9 +67,11 @@ public class gameLogic extends KeyAdapter {
         }
 
         // Kalbi rastgele zamanda çıkar 
-        if (extraLifeInstance == null && Math.random() < 0.6) {
+        if (extraLifeInstance == null && Math.random() < 0.001) {
             int x = (int) (Math.random() * (panel.getWidth() - 40));
-            extraLifeInstance = new ExtraLife(x, -40, 2);
+            int heartSpeed = 2 + level / 3;                             //levele göre extra live düşme hızı
+           extraLifeInstance = new ExtraLife(x, -40, heartSpeed);
+
         }
 
         // Kalbi güncelle
@@ -93,14 +95,19 @@ public class gameLogic extends KeyAdapter {
             obstacle obs = iterator.next();
             obs.update();
 
-            if (obs.getY() > panel.getHeight()) {
-                iterator.remove();
-                score++;
-                if (score % 10 == 0) {
-                    level++;
-                    speed++;
-                }
-            }
+      if (obs.getY() > panel.getHeight()) {
+    iterator.remove();
+    score++;
+
+    if (score % 40 == 0) {    // Hız artışı
+        level++;
+        if (speed < 7) {     // Max speed
+            speed++;
+        }
+    }
+}
+
+
 
             if (obs.getBounds().intersects(player.getBounds())) {
                 if (extraLives > 0) {

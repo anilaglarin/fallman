@@ -16,7 +16,7 @@ public class gameRenderer {
         this.panel = panel;
         this.logic = logic;
 
-        // Arka plan resmini yükle
+        // Arka plan resmini yükleme 
         try {
             backgroundImage = ImageIO.read(getClass().getResource("/game/resources/background.jpg"));
         } catch (IOException | IllegalArgumentException e) {
@@ -40,7 +40,7 @@ public class gameRenderer {
             obs.draw(g);
         }
 
-        // Extra life varsa çiz
+        // Extra life 
         if (logic.getExtraLife() != null) {
             logic.getExtraLife().draw(g);
         }
@@ -50,7 +50,7 @@ public class gameRenderer {
         g.setFont(new Font("Arial", Font.BOLD, 16));
         g.drawString("Max Score: " + logic.getMaxScore(), 10, 50);
         
-        g.drawString("Extra Lives: " + logic.getExtraLives(), 10, 80); // ➕ Ekstra can sayısı
+        g.drawString("Extra Lives: " + logic.getExtraLives(), 10, 80); //  +Ekstra can sayısı
 
         // Başlangıç mesajı
         if (!logic.isGameStarted()) {
